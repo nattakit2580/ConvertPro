@@ -34,7 +34,7 @@ def on_startup() -> None:
 
 @app.get("/")
 def root() -> RedirectResponse:
-    return RedirectResponse(url=f"{settings.api_prefix}/docs")
+    return RedirectResponse(url="/docs")
 
 
 @app.get(f"{settings.api_prefix}/health")
