@@ -46,7 +46,7 @@ function itemId() {
 }
 
 function downloadToken(downloadUrl: string) {
-  return new URL(downloadUrl).searchParams.get("token") ?? "";
+  return new URL(downloadUrl, window.location.origin).searchParams.get("token") ?? "";
 }
 
 function saveBlob(blob: Blob, filename: string) {
