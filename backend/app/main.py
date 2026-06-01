@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 
 from app.api.routes import admin, auth, conversions
 from app.core.config import get_settings
@@ -29,6 +30,11 @@ app.include_router(admin.router, prefix=settings.api_prefix)
 def on_startup() -> None:
     StorageService()
     init_db()
+
+
+@app.get("/")
+def root() -> RedirectResponse:
+    return RedirectResponse(url=f"{settings.api_prefix}/docs")
 
 
 @app.get(f"{settings.api_prefix}/health")
